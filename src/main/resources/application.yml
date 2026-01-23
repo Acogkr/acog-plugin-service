@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: acog-plugin-service
+  datasource:
+    url: jdbc:h2:file:~/acog-bot/database;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        id:
+          new_generator_mappings: true
+          optimizer: none
+    show-sql: false
+  config:
+    import: classpath:messages.yml
+
+bot:
+  token: ${BOT_TOKEN}
+  guild-id: ${GUILD_ID}
+
+ticket:
+  category-id: ${TICKET_CATEGORY_ID}
+  archive-category-id: ${ARCHIVE_CATEGORY_ID}
+  log-channel-id: ${LOG_CHANNEL_ID}
+  admin-role-id: ${ADMIN_ROLE_ID:}
+  channel-prefix: ${TICKET_CHANNEL_PREFIX:ticket-}
+  closed-channel-prefix: ${TICKET_CLOSED_CHANNEL_PREFIX:closed-}
+
+account:
+  bank: ${ACCOUNT_BANK:카카오뱅크}
+  number: ${ACCOUNT_NUMBER}
+  owner: ${ACCOUNT_OWNER}
+
+ai:
+  gemini-key: ${GEMINI_KEY}
+  responseDelayMs: 0
+  maxChatHistory: 50
+  maxMessageLength: 1000
+  maxFileContentLength: 5000
+  maxTotalContextLength: 30000
+
