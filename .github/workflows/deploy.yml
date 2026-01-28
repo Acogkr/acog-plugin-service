@@ -42,8 +42,16 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build and Deploy using Docker Compose
+      - name: Build and Deploy to Dockge Path
         run: |
+          sudo mkdir -p /opt/stacks/acog-bot
+          
+          sudo cp -r . /opt/stacks/acog-bot/
+          
+          sudo chown -R $USER:$USER /opt/stacks/acog-bot
+          
+          cd /opt/stacks/acog-bot
           docker compose down || true
           docker compose up -d --build
+          
           docker image prune -f
