@@ -12,6 +12,7 @@ class AccountCommand(
     private val accountConfig: AccountConfig
 ) : SlashCommand {
     override val data = Commands.slash("account", "입금 계좌 정보를 확인합니다.")
+    override val isAdminOnly = false
 
     override fun execute(event: SlashCommandInteractionEvent) {
         val embed = EmbedBuilder()
@@ -33,6 +34,6 @@ class AccountCommand(
             .setFooter("입금 확인을 위해 입금자명을 정확히 기재해주세요.")
             .build()
 
-        event.replyEmbeds(embed).setEphemeral(true).queue()
+        event.replyEmbeds(embed).setEphemeral(false).queue()
     }
 }

@@ -1,22 +1,23 @@
 package dev.acog.plugin.discord.commands
 
 import dev.acog.plugin.config.BotColors
+import dev.acog.plugin.config.MessageConfig
 import dev.acog.plugin.service.RevenueService
+import dev.acog.plugin.util.formatCurrency
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.Commands
 import org.springframework.stereotype.Component
-import dev.acog.plugin.util.formatCurrency
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
 @Component
 class SalesCommand(
     private val revenueService: RevenueService,
-    private val messageConfig: dev.acog.plugin.config.MessageConfig
+    private val messageConfig: MessageConfig
 ) : SlashCommand {
-    override val data = Commands.slash("sales", messageConfig.sales.desc)
+    override val data = Commands.slash("sales", messageConfig.sales.description)
         .addOption(OptionType.STRING, "date", messageConfig.sales.optionDate, false)
 
     override fun execute(event: SlashCommandInteractionEvent) {
@@ -35,21 +36,19 @@ class SalesCommand(
         val revenues = revenueService.getMonthlySales(yearMonth)
         val totalAmount = revenues.sumOf { it.amount }
         val count = revenues.size
-        
-        val totalAmountStr = totalAmount.formatCurrency()
 
         val embed = EmbedBuilder()
             .setTitle(messageConfig.sales.title.format(yearMonth))
             .setColor(BotColors.SUCCESS)
-            .addField(messageConfig.sales.totalAmount, "${totalAmountStr}원", true)
+            .addField(messageConfig.sales.totalAmount, "${totalAmount.formatCurrency()}원", true)
             .addField(messageConfig.sales.count, "${count}건", true)
             .setDescription(
-                revenues.takeLast(10).reversed().joinToString("\n") { 
+                revenues.takeLast(10).reversed().joinToString("\n") { revenue ->
                     messageConfig.sales.listFormat.format(
-                        it.id,
-                        it.createdAt.format(DateTimeFormatter.ofPattern(messageConfig.sales.dateFormat)),
-                        it.ownerName,
-                        it.amount.formatCurrency()
+                        revenue.id,
+                        revenue.createdAt.format(DateTimeFormatter.ofPattern(messageConfig.sales.dateFormat)),
+                        revenue.ownerName,
+                        revenue.amount.formatCurrency()
                     )
                 }
             )

@@ -8,16 +8,15 @@ import java.util.Locale
 
 fun SlashCommandInteractionEvent.getTicketOrReply(
     ticketService: TicketService,
-    errorMsg: String
+    errorMessage: String
 ): Ticket? {
     val ticket = ticketService.getTicket(channel.id)
     if (ticket == null) {
-        reply(errorMsg).setEphemeral(true).queue()
+        reply(errorMessage).setEphemeral(true).queue()
         return null
     }
     return ticket
 }
 
-fun Long.formatCurrency(): String {
-    return NumberFormat.getNumberInstance(Locale.KOREA).format(this)
-}
+fun Long.formatCurrency(): String =
+    NumberFormat.getNumberInstance(Locale.KOREA).format(this)

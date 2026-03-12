@@ -29,7 +29,10 @@ dependencies {
     
     implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    
+
+    implementation("org.apache.pdfbox:pdfbox:3.0.1")
+    implementation("org.apache.poi:poi-ooxml:5.2.5")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

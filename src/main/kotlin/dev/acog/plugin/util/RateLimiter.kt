@@ -10,18 +10,18 @@ class RateLimiter {
     private val cache = ConcurrentHashMap<String, RateLimitEntry>()
     
     fun checkRateLimit(userId: String): Boolean {
-        val now = System.currentTimeMillis()
+        val currentTimeMillis = System.currentTimeMillis()
         val entry = cache.compute(userId) { _, current ->
-            if (current == null || now > current.resetTime) {
-                RateLimitEntry(1, now + 60_000)
+            if (current == null || currentTimeMillis > current.resetTime) {
+                RateLimitEntry(1, currentTimeMillis + 60_000)
             } else {
                 current.copy(count = current.count + 1)
             }
-        }!!
-        
+        } ?: return false
+
         return entry.count <= maxRequestsPerMinute
     }
-    
+
     fun getRemainingRequests(userId: String): Int {
         val entry = cache[userId] ?: return maxRequestsPerMinute
         if (System.currentTimeMillis() > entry.resetTime) {
@@ -29,11 +29,11 @@ class RateLimiter {
         }
         return maxOf(0, maxRequestsPerMinute - entry.count)
     }
-    
+
     @Scheduled(fixedRate = 3600000)
     fun cleanup() {
-        val now = System.currentTimeMillis()
-        cache.entries.removeIf { it.value.resetTime < now }
+        val currentTimeMillis = System.currentTimeMillis()
+        cache.entries.removeIf { it.value.resetTime < currentTimeMillis }
     }
 
     private data class RateLimitEntry(val count: Int, val resetTime: Long)

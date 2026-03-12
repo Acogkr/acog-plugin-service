@@ -14,26 +14,24 @@ data class MessageConfig(
     var modalTitle: String = "플러그인 주문 제작 신청",
     var modalLabelName: String = "플러그인 이름",
     var modalLabelVersion: String = "버전",
-    var modalLabelDesc: String = "기획 내용 (간략히)",
+    var modalLabelDescription: String = "기획 내용 (간략히)",
     var modalPlaceholderName: String = "예: 텔레포트 플러그인",
     var modalPlaceholderVersion: String = "예: 1.20.4",
-    var modalPlaceholderDesc: String = "어떤 플러그인을 만들고 싶으신가요?",
+    var modalPlaceholderDescription: String = "어떤 플러그인을 만들고 싶으신가요?",
 
     var ticketCreateSuccess: String = "티켓이 생성되었습니다! %s",
     var ticketCreateFail: String = "티켓 생성에 실패했습니다. (서버 설정 또는 권한 문제)",
-    var ticketWelcome: String = "%s님 환영합니다! AI 기획자입니다.\n작성해주신 내용을 바탕으로 기획을 도와드리겠습니다.\n\n더 자세한 요구사항이나 준비된 기획서가 있다면 말씀해주세요!",
+    var ticketWelcome: String = "%s님 환영합니다!\n\n원활한 기획 진행을 위해 **기획서 파일(PDF, DOCX, TXT 등)** 또는 **상세한 기획 내용**을 먼저 올려주세요.\n파일 업로드가 어려우시면 채팅으로 상세히 작성해주셔도 됩니다.\n\n기획 내용을 확인한 뒤, 보완이 필요한 부분을 한 번에 정리해서 질문드리겠습니다.",
 
-    var closeStart: String = "티켓 종료 절차를 시작합니다. (AI 요약 중...)",
-    var specGenerated: String = "기술 명세서가 생성되었습니다.",
-    var specAttached: String = "기술 명세서가 파일로 첨부되었습니다.",
+    var closeStart: String = "티켓 종료 절차를 시작합니다.",
     var surveyTitle: String = "서비스 만족도 조사",
-    var surveyDesc: String = "\"%s\" 플러그인 제작 서비스는 만족하셨나요?\n\n아래 버튼을 눌러 평가해주세요.",
+    var surveyDescription: String = "\"%s\" 플러그인 제작 서비스는 만족하셨나요?\n\n아래 버튼을 눌러 평가해주세요.",
     var surveyButton5: String = "매우 만족",
     var surveyButton3: String = "보통",
     var surveyButton1: String = "불만족",
     var surveyThanks: String = "소중한 의견 감사합니다!",
     var surveyThankYouTitle: String = "소중한 의견 감사합니다!",
-    var surveyThankYouDesc: String = "선택하신 만족도: %s\n\n저희 서비스를 이용해주셔서 감사합니다.",
+    var surveyThankYouDescription: String = "선택하신 만족도: %s\n\n저희 서비스를 이용해주셔서 감사합니다.",
     var surveyError: String = "만족도 조사 처리 중 오류가 발생했습니다.",
     var surveySaveError: String = "만족도 조사 저장 중 오류가 발생했습니다.",
     var surveyUnknownPlugin: String = "Unknown",
@@ -89,7 +87,7 @@ data class ErrorConfig(
 )
 
 data class SalesConfig(
-    var desc: String = "월별 매출을 조회합니다.",
+    var description: String = "월별 매출을 조회합니다.",
     var optionDate: String = "조회할 년-월 (예: 2024-02)",
     var dateError: String = "날짜 형식이 올바르지 않습니다. (예: 2024-02)",
     var title: String = "%s 매출 현황",
@@ -101,21 +99,21 @@ data class SalesConfig(
 )
 
 data class SummaryConfig(
-    var desc: String = "현재 대화 내용을 바탕으로 기획서를 작성합니다.",
+    var description: String = "현재 대화 내용을 바탕으로 기획서를 작성합니다.",
     var content: String = "### 중간 점검: 기술 명세서 (파일 첨부됨)"
 )
 
 data class IncomeConfig(
-    var desc: String = "현재 티켓의 수익을 기록합니다.",
+    var description: String = "현재 티켓의 수익을 기록합니다.",
     var optionAmount: String = "수익 금액",
-    var deleteDesc: String = "수익 기록을 삭제합니다.",
+    var deleteDescription: String = "수익 기록을 삭제합니다.",
     var optionId: String = "삭제할 기록의 ID",
-    var deleteSuccess: String = "수익 기록이 삭제되었습니다.",
+    var deleteSuccess: String = "수익 기록 #%d (이)가 삭제되었습니다.",
     var deleteFail: String = "해당 ID의 수익 기록을 찾을 수 없습니다."
 )
 
 data class ReloadConfig(
-    var desc: String = "설정을 다시 불러옵니다.",
+    var description: String = "설정을 다시 불러옵니다.",
     var message: String = "설정이 리로드되었습니다."
 )
 
@@ -131,7 +129,7 @@ data class MonitorConfig(
 
 data class ChannelDeleteConfig(
     var title: String = "티켓 채널 수동 삭제됨",
-    var desc: String = "관리자에 의해 채널이 수동으로 삭제되었습니다.\n데이터는 'DELETED' 상태로 보존됩니다.",
+    var description: String = "관리자에 의해 채널이 수동으로 삭제되었습니다.\n데이터는 'DELETED' 상태로 보존됩니다.",
     var fieldPlugin: String = "플러그인",
     var fieldCustomer: String = "고객",
     var fieldTime: String = "삭제 시각",
@@ -139,9 +137,9 @@ data class ChannelDeleteConfig(
 )
 
 data class ReopenConfig(
-    var desc: String = "닫힌 티켓을 다시 엽니다.",
+    var description: String = "닫힌 티켓을 다시 엽니다.",
     var successTitle: String = "티켓 재오픈",
-    var successDesc: String = "티켓이 다시 열렸습니다.",
+    var successDescription: String = "티켓이 다시 열렸습니다.",
     var fail: String = "티켓 재오픈에 실패했습니다.",
     var notTicketChannel: String = "이 채널은 티켓 채널이 아닙니다.",
     var fieldPlugin: String = "플러그인",
@@ -149,12 +147,12 @@ data class ReopenConfig(
 )
 
 data class TicketChatConfig(
-    var logHeader: String = "[티켓 기본 정보]\n",
-    var logPlugin: String = "- 대상 플러그인: %s\n",
-    var logVersion: String = "- 마인크래프트 버전: %s\n",
-    var logCustomer: String = "- 의뢰인: %s\n\n",
-    var logHistory: String = "[대화 내역]\n",
-    var logAttachment: String = "[첨부 파일 내용]\n%s\n"
+    var contextHeader: String = "[티켓 기본 정보]\n",
+    var contextPlugin: String = "- 대상 플러그인: %s\n",
+    var contextVersion: String = "- 마인크래프트 버전: %s\n",
+    var contextCustomer: String = "- 의뢰인: %s\n\n",
+    var contextHistory: String = "[대화 내역]\n",
+    var contextAttachment: String = "[첨부 파일 내용]\n%s\n"
 )
 
 data class AiDefaultsConfig(
@@ -172,6 +170,8 @@ data class FileConfig(
 )
 
 data class LogLabels(
+    var labelPlugin: String = "플러그인",
+    var labelCustomer: String = "고객",
     var labelCreatedAt: String = "생성일",
     var labelClosedAt: String = "종료일",
     var labelReopenedAt: String = "재오픈일",

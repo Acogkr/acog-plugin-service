@@ -1,16 +1,19 @@
 package dev.acog.plugin.discord.commands
 
+import dev.acog.plugin.config.MessageConfig
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.interactions.commands.build.Commands
 import org.springframework.stereotype.Component
 import kotlin.system.exitProcess
 
 @Component
-class ReloadCommand : SlashCommand {
-    override val data = Commands.slash("reload", "봇을 재시작하여 설정을 갱신합니다.")
+class ReloadCommand(
+    private val messageConfig: MessageConfig
+) : SlashCommand {
+    override val data = Commands.slash("reload", messageConfig.reload.description)
 
     override fun execute(event: SlashCommandInteractionEvent) {
-        event.reply("봇을 재시작합니다... (약 5-10초 소요)").setEphemeral(true).queue {
+        event.reply(messageConfig.reload.message).setEphemeral(true).queue {
             exitProcess(0)
         }
     }

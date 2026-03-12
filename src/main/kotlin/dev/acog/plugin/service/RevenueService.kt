@@ -3,6 +3,7 @@ package dev.acog.plugin.service
 import dev.acog.plugin.domain.entity.Revenue
 import dev.acog.plugin.domain.entity.Ticket
 import dev.acog.plugin.domain.repository.RevenueRepository
+import dev.acog.plugin.domain.repository.TicketRepository
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -11,7 +12,7 @@ import java.time.YearMonth
 @Service
 class RevenueService(
     private val revenueRepository: RevenueRepository,
-    private val ticketRepository: dev.acog.plugin.domain.repository.TicketRepository
+    private val ticketRepository: TicketRepository
 ) {
     private val logger = LoggerFactory.getLogger(RevenueService::class.java)
 

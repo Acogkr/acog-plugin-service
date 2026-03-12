@@ -24,9 +24,6 @@ data class Satisfaction(
     @Column(nullable = false)
     val rating: Int,
 
-    @Column(nullable = true, length = 1000)
-    val feedback: String? = null,
-
     @Column(nullable = false)
     val createdAt: LocalDateTime = LocalDateTime.now()
 )
